@@ -9,7 +9,7 @@ using tutorial10.Models;
 
 namespace tutorial10.Migrations
 {
-    [DbContext(typeof(PatientDbContext))]
+    [DbContext(typeof(DoctorDbContext))]
     [Migration("20200522115741_AddTables")]
     partial class AddTables
     {

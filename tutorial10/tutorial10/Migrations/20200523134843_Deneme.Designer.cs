@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tutorial10.Models;
 
 namespace tutorial10.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    partial class PatientDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200523134843_Deneme")]
+    partial class Deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,14 +108,20 @@ namespace tutorial10.Migrations
                     b.Property<int>("IdDoctor")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdDoctorNavigationIdDoctor")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdPatient")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdPatientNavigationIdPatient")
                         .HasColumnType("int");
 
                     b.HasKey("IdPrescription");
 
-                    b.HasIndex("IdDoctor");
+                    b.HasIndex("IdDoctorNavigationIdDoctor");
 
-                    b.HasIndex("IdPatient");
+                    b.HasIndex("IdPatientNavigationIdPatient");
 
                     b.ToTable("Prescription");
                 });
@@ -126,8 +134,7 @@ namespace tutorial10.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Details")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Dose")
                         .HasColumnType("int");
@@ -140,41 +147,18 @@ namespace tutorial10.Migrations
 
                     b.HasKey("IdPrescription_Medicament");
 
-                    b.HasIndex("IdMedicament");
-
-                    b.HasIndex("IdPrescription");
-
                     b.ToTable("Prescription_Medicament");
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription", b =>
                 {
-                    b.HasOne("tutorial10.Models.Doctor", "Doctor")
-                        .WithMany("Prescriptions")
-                        .HasForeignKey("IdDoctor")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("tutorial10.Models.Doctor", "IdDoctorNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdDoctorNavigationIdDoctor");
 
-                    b.HasOne("tutorial10.Models.Patient", "Patient")
-                        .WithMany("Prescriptions")
-                        .HasForeignKey("IdPatient")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("tutorial10.Models.Prescription_Medicament", b =>
-                {
-                    b.HasOne("tutorial10.Models.Medicament", "Medicament")
-                        .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("IdMedicament")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("tutorial10.Models.Prescription", "Prescription")
-                        .WithMany("Prescription_Medicaments")
-                        .HasForeignKey("IdPrescription")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("tutorial10.Models.Patient", "IdPatientNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdPatientNavigationIdPatient");
                 });
 #pragma warning restore 612, 618
         }

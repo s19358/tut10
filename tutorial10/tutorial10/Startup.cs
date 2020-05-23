@@ -27,7 +27,7 @@ namespace tutorial10
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<PatientDbContext>(options =>
+            services.AddDbContext<DoctorDbContext>(options =>
             {
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s19358;Integrated Security=True");
             });
