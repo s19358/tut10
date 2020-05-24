@@ -15,5 +15,29 @@ namespace tutorial10.Services
             _context = context;
         }
 
+        public string addDoctor(Doctor doctor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string deleteDoctor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Doctor getDoctor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Doctor> getDoctors()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string modifyDoctor(Doctor doctor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

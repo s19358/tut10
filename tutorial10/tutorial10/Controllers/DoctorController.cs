@@ -102,7 +102,7 @@ namespace tutorial10.Controllers
             var res = _context.Doctor.Any(e => e.IdDoctor == id);
             if (res == true)
             {
-                var res2 = _context.Doctor.Find(id);  // get the object by the pk
+                var res2 = _context.Doctor.Find(id); 
                 _context.Doctor.Remove(res2);
                 _context.SaveChanges();
                 return Ok("Succesfully deleted!");
