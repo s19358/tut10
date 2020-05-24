@@ -9,8 +9,7 @@ namespace tutorial10.Models
 {
     public class Prescription_Medicament
     {
-        [Key]
-        public int IdPrescription_Medicament { get; set; }
+  
         [ForeignKey("Medicament")]
         public int IdMedicament { get; set; }
         [ForeignKey("Prescription")]

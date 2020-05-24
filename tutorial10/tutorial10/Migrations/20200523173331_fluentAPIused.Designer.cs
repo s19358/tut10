@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tutorial10.Models;
 
 namespace tutorial10.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    partial class PatientDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200523173331_fluentAPIused")]
+    partial class fluentAPIused
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,29 +46,6 @@ namespace tutorial10.Migrations
                     b.HasKey("IdDoctor");
 
                     b.ToTable("Doctor");
-
-                    b.HasData(
-                        new
-                        {
-                            IdDoctor = 1,
-                            Email = "bilal@gmail.com",
-                            FirstName = "Bilal",
-                            LastName = "Ozgur"
-                        },
-                        new
-                        {
-                            IdDoctor = 2,
-                            Email = "reyhan@gmail.com",
-                            FirstName = "Reyhan",
-                            LastName = "Ozgur"
-                        },
-                        new
-                        {
-                            IdDoctor = 3,
-                            Email = "ali@gmail.com",
-                            FirstName = "Ali",
-                            LastName = "Yilmaz"
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Medicament", b =>
@@ -78,10 +57,8 @@ namespace tutorial10.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100)
-                        .HasDefaultValue("None");
+                        .HasMaxLength(100);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -96,29 +73,6 @@ namespace tutorial10.Migrations
                     b.HasKey("IdMedicament");
 
                     b.ToTable("Medicament");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            Description = "for pain",
-                            Name = "Aspirin",
-                            Type = "type1"
-                        },
-                        new
-                        {
-                            IdMedicament = 2,
-                            Description = "for pain",
-                            Name = "Parol",
-                            Type = "type2"
-                        },
-                        new
-                        {
-                            IdMedicament = 3,
-                            Description = "for cold",
-                            Name = "Terraflu",
-                            Type = "type3"
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Patient", b =>
@@ -144,29 +98,6 @@ namespace tutorial10.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patient");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPatient = 1,
-                            Birthdate = new DateTime(1997, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Busra",
-                            LastName = "Yildiz"
-                        },
-                        new
-                        {
-                            IdPatient = 2,
-                            Birthdate = new DateTime(1995, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Berkay",
-                            LastName = "Koyuncu"
-                        },
-                        new
-                        {
-                            IdPatient = 3,
-                            Birthdate = new DateTime(1997, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Merve",
-                            LastName = "Unal"
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription", b =>
@@ -195,32 +126,6 @@ namespace tutorial10.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescription");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPrescription = 1,
-                            Date = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 1,
-                            IdPatient = 1
-                        },
-                        new
-                        {
-                            IdPrescription = 2,
-                            Date = new DateTime(2020, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 2,
-                            IdPatient = 2
-                        },
-                        new
-                        {
-                            IdPrescription = 3,
-                            Date = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 3,
-                            IdPatient = 3
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription_Medicament", b =>
@@ -244,29 +149,6 @@ namespace tutorial10.Migrations
                     b.HasIndex("IdPrescription");
 
                     b.ToTable("Prescription_Medicament");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            IdPrescription = 1,
-                            Details = "once a week",
-                            Dose = 1
-                        },
-                        new
-                        {
-                            IdMedicament = 2,
-                            IdPrescription = 2,
-                            Details = "twice a day",
-                            Dose = 2
-                        },
-                        new
-                        {
-                            IdMedicament = 3,
-                            IdPrescription = 3,
-                            Details = "once a day",
-                            Dose = 1
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription", b =>

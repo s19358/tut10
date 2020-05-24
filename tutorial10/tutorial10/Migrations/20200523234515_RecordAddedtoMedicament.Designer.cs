@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tutorial10.Models;
 
 namespace tutorial10.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    partial class PatientDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200523234515_RecordAddedtoMedicament")]
+    partial class RecordAddedtoMedicament
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,32 +197,6 @@ namespace tutorial10.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescription");
-
-                    b.HasData(
-                        new
-                        {
-                            IdPrescription = 1,
-                            Date = new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 1,
-                            IdPatient = 1
-                        },
-                        new
-                        {
-                            IdPrescription = 2,
-                            Date = new DateTime(2020, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 2,
-                            IdPatient = 2
-                        },
-                        new
-                        {
-                            IdPrescription = 3,
-                            Date = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DueDate = new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdDoctor = 3,
-                            IdPatient = 3
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription_Medicament", b =>
@@ -244,29 +220,6 @@ namespace tutorial10.Migrations
                     b.HasIndex("IdPrescription");
 
                     b.ToTable("Prescription_Medicament");
-
-                    b.HasData(
-                        new
-                        {
-                            IdMedicament = 1,
-                            IdPrescription = 1,
-                            Details = "once a week",
-                            Dose = 1
-                        },
-                        new
-                        {
-                            IdMedicament = 2,
-                            IdPrescription = 2,
-                            Details = "twice a day",
-                            Dose = 2
-                        },
-                        new
-                        {
-                            IdMedicament = 3,
-                            IdPrescription = 3,
-                            Details = "once a day",
-                            Dose = 1
-                        });
                 });
 
             modelBuilder.Entity("tutorial10.Models.Prescription", b =>

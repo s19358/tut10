@@ -12,6 +12,14 @@
     <Compile Remove="Migrations\20200523134626_Deneme.Designer.cs" />
     <Compile Remove="Migrations\20200523140246_deneme2.cs" />
     <Compile Remove="Migrations\20200523140246_deneme2.Designer.cs" />
+    <Compile Remove="Migrations\20200523215651_ValueGeneratedAutoAdded.cs" />
+    <Compile Remove="Migrations\20200523215651_ValueGeneratedAutoAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200523221511_ValueGeneratedAutoAdded.cs" />
+    <Compile Remove="Migrations\20200523221511_ValueGeneratedAutoAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200523233024_SomeRecordsAdded.cs" />
+    <Compile Remove="Migrations\20200523233024_SomeRecordsAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200523234311_RecordAddedtoMedicament.cs" />
+    <Compile Remove="Migrations\20200523234311_RecordAddedtoMedicament.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

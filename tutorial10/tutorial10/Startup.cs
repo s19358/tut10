@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using tutorial10.Models;
+using tutorial10.Services;
 
 namespace tutorial10
 {
@@ -26,7 +27,7 @@ namespace tutorial10
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //services.AddTransient<IDoctorDbService, SqlServerDoctorDbService>();
             services.AddDbContext<DoctorDbContext>(options =>
             {
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s19358;Integrated Security=True");
