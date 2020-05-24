@@ -16,11 +16,11 @@ namespace tutorial10.Models
 
 
 
-        public static IEnumerable<Doctor> doc { get; set; }
-        public static IEnumerable<Patient> pat { get; set; }
-        public static IEnumerable<Medicament> med { get; set; }
-        public static IEnumerable<Prescription> pres { get; set; }
-        public static IEnumerable<Prescription_Medicament> pres_med { get; set; }
+        private static IEnumerable<Doctor> doc { get; set; }
+        private static IEnumerable<Patient> pat { get; set; }
+        private static IEnumerable<Medicament> med { get; set; }
+        private static IEnumerable<Prescription> pres { get; set; }
+        private static IEnumerable<Prescription_Medicament> pres_med { get; set; }
 
 
         public DoctorDbContext()
