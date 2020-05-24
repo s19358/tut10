@@ -72,8 +72,14 @@ namespace tutorial10.Models
                         .WithMany(p => p.Prescriptions)
                         .HasForeignKey(d => d.IdPatient);
                         //.OnDelete(DeleteBehavior.ClientSetNull)
-                        //.HasConstraintName("Student_Enrollment");
+                        //.HasConstraintName("");
                  */
+
+                en.HasOne(d => d.Doctor)
+                        .WithMany(p => p.Prescriptions)
+                        .HasForeignKey(d => d.IdDoctor)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                //.HasConstraintName("");
             });
 
             modelBuilder.Entity<Medicament>(en =>

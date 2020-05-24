@@ -16,7 +16,7 @@ namespace tutorial10.Models
 
         [ForeignKey("Patient")]
         public int IdPatient { get; set; }
-        [ForeignKey("Doctor")]
+       // [ForeignKey("Doctor")]
         public int IdDoctor { get; set; }        
         public virtual Patient Patient{ get; set; }       
         public virtual Doctor Doctor { get; set; }
