@@ -84,8 +84,9 @@ namespace tutorial10.Controllers
             if (res == true)
             {
                 var res2 = _context.Doctor.Find(doctor.IdDoctor);
-               // res2.FirstName = doctor.FirstName;
+                res2.FirstName = doctor.FirstName;
                 res2.LastName = doctor.LastName;
+                res2.Email = doctor.Email;
                 _context.SaveChanges();
                 return Ok("Succesfully updated!");
 
