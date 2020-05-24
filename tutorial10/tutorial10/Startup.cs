@@ -27,7 +27,7 @@ namespace tutorial10
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IDoctorDbService, SqlServerDoctorDbService>();
+            services.AddTransient<IDoctorDbService, SqlServerDoctorDbService>();
             services.AddDbContext<DoctorDbContext>(options =>
             {
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s19358;Integrated Security=True");

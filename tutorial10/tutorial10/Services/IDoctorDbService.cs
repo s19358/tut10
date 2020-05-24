@@ -9,8 +9,8 @@ namespace tutorial10.Services
     public interface IDoctorDbService
     {
 
-        List<Doctor> getDoctors();
-        Doctor getDoctor(int id);
+        IQueryable getDoctors();
+        IQueryable getDoctor(int id);
         string addDoctor(Doctor doctor);
         string modifyDoctor(Doctor doctor);
         string deleteDoctor(int id);

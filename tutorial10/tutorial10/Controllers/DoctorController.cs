@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using tutorial10.Models;
+using tutorial10.Services;
 
 namespace tutorial10.Controllers
 {
@@ -13,105 +14,46 @@ namespace tutorial10.Controllers
     [ApiController]
     public class DoctorController : ControllerBase
     {
-        private readonly DoctorDbContext _context;
-        public DoctorController(DoctorDbContext context)
+        // private readonly DoctorDbContext _context;
+        IDoctorDbService _service;
+        public DoctorController(IDoctorDbService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult getDoctors()
         {
-            return Ok(_context.Doctor.Include(e => e.Prescriptions)                                                     
-                                                       .Select(e => new {
-                                                           e.IdDoctor,
-                                                           e.FirstName,
-                                                           e.LastName,
-                                                           e.Email,
-                                                           PrescriptionList = e.Prescriptions
-                                                                                       .Select(e => e.IdPrescription)
-                                                                                       .ToList()}));
+            var res = _service.getDoctors();
+            return Ok(res);
         }
         
         [HttpGet("{id}")]
         public IActionResult getDoctor(int id)
         {
-            var res = _context.Doctor.Any(e => e.IdDoctor == id);
+            var res = _service.getDoctor(id);
 
-            if (res == true)
-            {
-                var res2 = _context.Doctor.Include(e => e.Prescriptions)
-                                                       .Where(e => e.IdDoctor == id)
-                                                       .Select(e => new { e.IdDoctor, 
-                                                                                    e.FirstName,
-                                                                                    e.LastName, 
-                                                                                    e.Email, 
-                                                                                    PrescriptionList = e.Prescriptions
-                                                                                                                .Select(e=> e.IdPrescription)
-                                                                                                                .ToList() });
-                                                   
-
-                return Ok(res2);
-            }
-            else
-            {
-                return NotFound("There is no  such record!");
-            }
+            return Ok(res);
         }
         [HttpPost]
         public IActionResult addDoctor(Doctor doctor)
         {
-            var res = _context.Doctor.Any(e => e.IdDoctor == doctor.IdDoctor);
-            if (res == true)
-            {
-                return BadRequest("There is a doctor with this id!");
-
-            }
-            else
-            {
-
-                _context.Doctor.Add(doctor);
-                _context.SaveChanges();
-                return Ok("Succesfully added!");
-            }
+            var res = _service.addDoctor(doctor);
+            return Ok(res);
 
         }
         [HttpPut]
         public IActionResult modifyDoctor(Doctor doctor)
         {
-            var res = _context.Doctor.Any(e => e.IdDoctor == doctor.IdDoctor);
-
-            if (res == true)
-            {
-                var res2 = _context.Doctor.Find(doctor.IdDoctor);
-                res2.FirstName = doctor.FirstName;
-                res2.LastName = doctor.LastName;
-                res2.Email = doctor.Email;
-                _context.SaveChanges();
-                return Ok("Succesfully updated!");
-
-            }
-            else
-            {
-                return NotFound("There is no such doctor!");
-            }
+            var res = _service.modifyDoctor(doctor);
+            return Ok(res);
         }
 
         [HttpDelete("{id}")]
         public IActionResult deleteDoctor(int id)
         {
-            var res = _context.Doctor.Any(e => e.IdDoctor == id);
-            if (res == true)
-            {
-                var res2 = _context.Doctor.Find(id); 
-                _context.Doctor.Remove(res2);
-                _context.SaveChanges();
-                return Ok("Succesfully deleted!");
-            }
-            else
-            {
-                return NotFound("There is no  such record!");
-            }
+            var res = _service.deleteDoctor(id);
+            return Ok(res);
         }
     }
 }
